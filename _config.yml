@@ -52,3 +52,6 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+category_dir: category/
+tag_dir: tag/

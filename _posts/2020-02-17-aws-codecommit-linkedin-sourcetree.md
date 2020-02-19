@@ -2,7 +2,7 @@
 layout: post
 title:  "AWS CodeCommit Repository를 SourceTree와 연동하기"
 date:   2020-02-17 03:59:26 +0900
-categories: jekyll update
+categories: infra aws
 ---
 
 
