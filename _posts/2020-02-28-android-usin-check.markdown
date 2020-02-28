@@ -29,5 +29,3 @@ fun isActivatePhone(context: Context) : Boolean {
 ```
 
 위 코드는 AndroidManifest.xml 파일에서 권한을 요청할 필요가 없어 간단하다.
-
-만약 통신
