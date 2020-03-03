@@ -1,0 +1,89 @@
+---
+layout: post
+title:  "Linux 파일내용 변경"
+categories: linux
+tags: [terminal vi sh]
+---
+
+# 리눅스 sed 명령어를 사용하여 파일 내용 변경
+
+일반적으로 리눅스에서 파일 내용을 변경할 때 vi 등을 사용하여 직접 수정을 하는 경우가 많다.
+하지만 shell script 등을 이용해 자동으로 파일 내용을 수정해야 할 경우가 생긴다면 위 방법으로는 내용 수정이 어려우니 sed 명령어를 사용해 간단하게 파일 내용을 변경할 수가 있다.
+
+예시는 아래와 같다.
+
+1. 1개의 파일 내용 변경  
+   `$ sed -i 's/기존/변경/g' 파일명.txt`
+2. 확장자가 동일한 파일 내용 변경  
+   `$ sed -i 's/기존/변경/g' *.txt`
+2. 동일한 디렉터리에 모든 파일내용 변경  
+   `$ sed -i 's/기존/변경/g' *`
+3. 특정 문자열 삭제  
+   `$ sed -i '/삭제/d' 파일명.txt`
+4. 특정 문자열 외 나머지 내용 삭제  
+   `$ sed -i '/삭제 제외/!d' 파일명.txt`
+
+### 임시로 텍스트 파일을 생성해 위 사례들을 한번 살펴보도록 한다.  
+-- 원본 (test1.txt, test2.txt) --  
+안녕하세요  
+Hello world!  
+Shell script  
+
+---
+
+## 1번 예시
+`$ sed -i 's/Hello/Welcome/g' test1.txt`  
+### test1.txt  
+안녕하세요  
+Welcome world!  
+Shell script
+
+---
+
+## 2번 예시
+`$ sed -i 's/Shell script/sh/g' *.txt`
+### test1.txt
+안녕하세요  
+Welcome world!  
+sh
+### test2.txt
+안녕하세요  
+Hello world!  
+sh
+
+---
+
+## 3번 예시
+`$ sed -i 's/안녕하세요/반갑습니다/g' *`
+### test1.txt
+반갑습니다  
+Welcome world!  
+sh
+### test2.txt
+반갑습니다  
+Hello world!  
+sh
+
+---
+
+## 4번 예시
+`$ sed -i '/반갑습니다/d' test1.txt`
+### test1.txt
+Welcome world!  
+sh
+
+---
+
+## 5번 예시
+`$ sed -i '/반갑습니다/!d' test2.txt`
+### test2.txt
+반갑습니다
+
+---
+
+* 맥에서의 sed 명령어는 linux의 명령어와 다소 차이가 있어 그대로 사용할 수는 없다.
+더욱이 몇몇 특수기호의 경우 채 환부에서 사용되지 않아 `gsed`를 이용해 위 명령어들을 그대로 사용할 수 있다
+
+## gsed 설치
+`$ brew install gnu-sed`  
+설치가 완료되면 `sed` 대신 `gsed` 명령어를 통해 동일한 작업을 할 수 있다.
