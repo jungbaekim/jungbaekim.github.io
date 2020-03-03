@@ -16,16 +16,18 @@ tags: [terminal vi sh]
    `$ sed -i 's/기존/변경/g' 파일명.txt`
 2. 확장자가 동일한 파일 내용 변경  
    `$ sed -i 's/기존/변경/g' *.txt`
-2. 동일한 디렉터리에 모든 파일내용 변경  
+3. 동일한 디렉터리에 모든 파일내용 변경  
    `$ sed -i 's/기존/변경/g' *`
-3. 특정 문자열 삭제  
+4. 특정 문자열 삭제  
    `$ sed -i '/삭제/d' 파일명.txt`
-4. 특정 문자열 외 나머지 내용 삭제  
+5. 특정 문자열 외 나머지 내용 삭제  
    `$ sed -i '/삭제 제외/!d' 파일명.txt`
+
+- 2,3번 예시처럼 특정 파일을 지정하는건 삭제등에서도 동일하게 사용된다.
 
 ### 임시로 텍스트 파일을 생성해 위 사례들을 한번 살펴보도록 한다.  
 -- 원본 (test1.txt, test2.txt) --  
-안녕하세요  
+>안녕하세요  
 Hello world!  
 Shell script  
 
@@ -34,7 +36,7 @@ Shell script
 ## 1번 예시
 `$ sed -i 's/Hello/Welcome/g' test1.txt`  
 ### test1.txt  
-안녕하세요  
+>안녕하세요  
 Welcome world!  
 Shell script
 
@@ -43,11 +45,12 @@ Shell script
 ## 2번 예시
 `$ sed -i 's/Shell script/sh/g' *.txt`
 ### test1.txt
-안녕하세요  
+>안녕하세요  
 Welcome world!  
 sh
+
 ### test2.txt
-안녕하세요  
+>안녕하세요  
 Hello world!  
 sh
 
@@ -56,11 +59,12 @@ sh
 ## 3번 예시
 `$ sed -i 's/안녕하세요/반갑습니다/g' *`
 ### test1.txt
-반갑습니다  
+>반갑습니다  
 Welcome world!  
 sh
+
 ### test2.txt
-반갑습니다  
+>반갑습니다  
 Hello world!  
 sh
 
@@ -69,7 +73,7 @@ sh
 ## 4번 예시
 `$ sed -i '/반갑습니다/d' test1.txt`
 ### test1.txt
-Welcome world!  
+>Welcome world!  
 sh
 
 ---
@@ -77,11 +81,12 @@ sh
 ## 5번 예시
 `$ sed -i '/반갑습니다/!d' test2.txt`
 ### test2.txt
-반갑습니다
+>반갑습니다
 
 ---
 
-* 맥에서의 sed 명령어는 linux의 명령어와 다소 차이가 있어 그대로 사용할 수는 없다.
+# Mac에서의 사용
+맥에서의 sed 명령어는 linux의 명령어와 다소 차이가 있어 그대로 사용할 수는 없다.
 더욱이 몇몇 특수기호의 경우 채 환부에서 사용되지 않아 `gsed`를 이용해 위 명령어들을 그대로 사용할 수 있다
 
 ## gsed 설치
